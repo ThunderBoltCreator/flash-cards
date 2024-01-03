@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import Logo from 'shared/layout/Logo.tsx'
+
+import Logo from 'shared/layout/Logo'
 
 type HeaderProps = {
   rightSlot?: ReactNode
