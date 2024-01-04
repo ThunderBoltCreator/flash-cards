@@ -1,6 +1,21 @@
 .button {
   all: unset;
+
   cursor: pointer;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 28px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7143;
+  color: var(--color-light-100);
+
+  border-radius: 4px;
 
   &:focus-visible {
     outline: 2px solid var(--color-info-500);
@@ -8,19 +23,34 @@
 }
 
 .primary {
-  background-color: red;
+  background-color: var(--color-accent-500);
+  box-shadow: 0 4px 18px 0 rgb(140 97 255 / 35%);
 }
 
 .secondary {
-  background-color: green;
+  background-color: var(--color-dark-300);
+  box-shadow: 0 4px 4px 0 rgb(77 86 96 / 13%);
 }
 
-.tertiary {
-  background-color: blue;
+.outlined {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  color: var(--color-accent-500);
+
+  background-color: transparent;
+  border: 1px solid var(--color-accent-500, #8c61ff);
+  border-radius: 4px;
 }
 
 .link {
-  background-color: yellow;
+  padding: 6px 0;
+
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-accent-500);
+
+  background-color: transparent;
 }
 
 .fullWidth {

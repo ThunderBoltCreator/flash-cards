@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import s from './button.module.scss'
 
-export type ButtonProps<T extends ElementType = 'button'> = {
+export type ButtonProps<T extends ElementType> = {
   as?: T
   children: ReactNode
   className?: string
@@ -10,15 +10,24 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'link' | 'outlined' | 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
-export const Button = <T extends ElementType = 'button'>(
-  props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
-) => {
-  const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
+export const Button = <T extends ElementType = 'button'>({
+  as,
+  children,
+  className,
+  fullWidth,
+  variant = 'primary',
+  ...rest
+}: ButtonProps<T>) => {
+  const Component: ElementType = as || 'button'
 
   return (
     <Component
-      className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}
+      className={`${s.button} ${s[variant]} ${fullWidth && s.fullWidth} ${
+        className ? className : ''
+      }`}
       {...rest}
-    />
+    >
+      {children}
+    </Component>
   )
 }
