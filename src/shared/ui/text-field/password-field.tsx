@@ -11,7 +11,7 @@ type PasswordFieldProps = Omit<TextFieldProps, 'rightIcon' | 'type'> & {
   showPasswordInit?: boolean
 }
 
-export function Password({ disabled, showPasswordInit, ...props }: PasswordFieldProps) {
+export function PasswordField({ disabled, showPasswordInit, ...props }: PasswordFieldProps) {
   const [showPas, setShowPas] = useState(!!showPasswordInit)
   const type = showPas ? 'text' : 'password'
 

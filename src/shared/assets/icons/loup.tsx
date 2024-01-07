@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import type { Ref, SVGProps } from 'react'
-const SearchIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const LoupIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg height={24} ref={ref} width={24} xmlns={'http://www.w3.org/2000/svg'} {...props}>
     <path
       d={
@@ -9,6 +9,6 @@ const SearchIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => 
     />
   </svg>
 )
-const ForwardRef = forwardRef(SearchIcon)
+const ForwardRef = forwardRef(LoupIcon)
 
 export default ForwardRef
