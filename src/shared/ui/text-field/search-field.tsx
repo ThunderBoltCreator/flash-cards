@@ -4,11 +4,12 @@ import { useId, useState } from 'react'
 import type { ChangeEvent } from 'react'
 
 import Cross from 'shared/assets/icons/cross'
+import Loup from 'shared/assets/icons/loup'
 
 import { Base, styles } from './text-field'
-export type SearchFieldProps = TextFieldProps & {}
+export type SearchFieldProps = Omit<TextFieldProps, 'type'> & {}
 
-export function Search(props: SearchFieldProps) {
+export function SearchField(props: SearchFieldProps) {
   const id = useId()
   const [value, setValue] = useState('')
 
@@ -20,11 +21,11 @@ export function Search(props: SearchFieldProps) {
     <>
       {!value ? (
         <label className={styles.leftIcon} htmlFor={id}>
-          <Search />
+          <Loup />
         </label>
       ) : (
         <button className={styles.leftIcon}>
-          <Search />
+          <Loup />
         </button>
       )}
     </>

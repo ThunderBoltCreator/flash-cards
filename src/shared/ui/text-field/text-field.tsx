@@ -21,7 +21,7 @@ export const styles = {
   title: clsx(s.title),
 }
 
-export function Base({
+export function BaseField({
   className,
   error,
   id,
