@@ -1,9 +1,9 @@
-import { PasswordField } from './password-field'
-import { SearchField } from './search-field'
-import { TextField } from './text-field'
+import { Password } from './password-field'
+import { Search } from './search-field'
+import { Base } from './text-field'
 
 export const TextFields = {
-  default: TextField,
-  password: PasswordField,
-  search: SearchField,
+  Base,
+  Password,
+  Search,
 }

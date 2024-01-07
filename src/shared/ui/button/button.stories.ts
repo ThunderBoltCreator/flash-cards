@@ -4,9 +4,15 @@ import { Button } from 'shared/ui/button/button'
 
 const meta = {
   argTypes: {
+    as: {
+      control: { type: 'radio' },
+      defaultValue: 'button',
+      options: ['a', 'button'],
+    },
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'link'],
+      defaultValue: 'primary',
+      options: ['primary', 'secondary', 'outlined', 'link'],
     },
   },
   component: Button,

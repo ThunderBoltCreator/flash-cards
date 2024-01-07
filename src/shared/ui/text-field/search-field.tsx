@@ -4,18 +4,18 @@ import { useId, useState } from 'react'
 import type { ChangeEvent } from 'react'
 
 import Cross from 'shared/assets/icons/cross'
-import Search from 'shared/assets/icons/search'
 
-import { TextField, styles } from './text-field'
+import { Base, styles } from './text-field'
 export type SearchFieldProps = TextFieldProps & {}
 
-export function SearchField(props: SearchFieldProps) {
+export function Search(props: SearchFieldProps) {
   const id = useId()
   const [value, setValue] = useState('')
 
   const onChangeField = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }
+
   const SearchIcon = (
     <>
       {!value ? (
@@ -37,7 +37,7 @@ export function SearchField(props: SearchFieldProps) {
   )
 
   return (
-    <TextField
+    <Base
       id={id}
       leftIcon={SearchIcon}
       onChange={onChangeField}

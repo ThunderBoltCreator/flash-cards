@@ -1,34 +1,38 @@
 import type { TextFieldProps } from './text-field'
 
 import { useState } from 'react'
-import type { InputHTMLAttributes } from 'react'
 
 import CloseEye from 'shared/assets/icons/close-eye'
 import Eye from 'shared/assets/icons/eye'
 
-import { TextField, styles } from './text-field'
+import { Base, styles } from './text-field'
 
-type PasswordFieldProps = TextFieldProps & {
+type PasswordFieldProps = Omit<TextFieldProps, 'rightIcon' | 'type'> & {
   showPasswordInit?: boolean
 }
 
-export function PasswordField({ showPasswordInit, ...props }: PasswordFieldProps) {
+export function Password({ disabled, showPasswordInit, ...props }: PasswordFieldProps) {
   const [showPas, setShowPas] = useState(!!showPasswordInit)
+  const type = showPas ? 'text' : 'password'
+
+  const toggleShowPas = () => {
+    if (disabled) {
+      return
+    }
+
+    setShowPas(!showPas)
+  }
 
   return (
-    <TextField
+    <Base
+      disabled={disabled}
       {...props}
       rightIcon={
-        <button className={styles.rightIcon} onClick={() => setShowPas(!showPas)}>
+        <button className={styles.rightIcon} disabled={disabled} onClick={toggleShowPas}>
           {showPas ? <Eye /> : <CloseEye />}
         </button>
       }
-      type={getType('password', showPas)}
+      type={type}
     />
   )
 }
-
-const getType = (
-  type: Pick<InputHTMLAttributes<HTMLInputElement>, 'type'>['type'] = 'text',
-  isShow: boolean
-) => (type === 'password' && isShow ? 'text' : type)

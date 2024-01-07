@@ -8,9 +8,9 @@ export function App() {
       <Header rightSlot={<Button>Button</Button>} />
       Hello
       <Button as={'div'}>Knopka</Button>
-      <TextFields.search placeholder={'sdasds'} />
-      <TextFields.password placeholder={'sdasds'} />
-      <TextFields.default placeholder={'sdasds'} />
+      <TextFields.Search placeholder={'sdasds'} />
+      <TextFields.Password placeholder={'sdasds'} />
+      <TextFields.Base placeholder={'sdasds'} />
     </div>
   )
 }

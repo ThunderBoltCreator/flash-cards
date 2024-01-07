@@ -6,5 +6,4 @@ module.exports = {
     "import/no-duplicates":'warn',
     'no-duplicate-imports':'off',
   },
- 
 }

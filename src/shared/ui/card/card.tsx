@@ -11,16 +11,11 @@ type CardProps<T extends ElementType> = {
 
 export function Card<T extends ElementType = 'div'>({
   as,
-  children,
   classNames,
   ...props
 }: CardProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
   const Component = as || 'div'
   const styles = clsx(s.root, classNames)
 
-  return (
-    <Component {...props} className={styles}>
-      {children}
-    </Component>
-  )
+  return <Component {...props} className={styles} />
 }

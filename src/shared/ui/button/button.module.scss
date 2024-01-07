@@ -1,6 +1,4 @@
 .button {
-  all: unset;
-
   cursor: pointer;
 
   display: flex;
@@ -8,6 +6,7 @@
   align-items: center;
   justify-content: center;
 
+  width: fit-content;
   padding: 6px 28px;
 
   font-size: 14px;
