@@ -1,4 +1,5 @@
-import { type SVGProps, memo } from 'react'
+import { memo } from 'react'
+import type { SVGProps } from 'react'
 const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
   <svg fill={'none'} height={36} width={157} xmlns={'http://www.w3.org/2000/svg'} {...props}>
     <path

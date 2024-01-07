@@ -1,27 +1,30 @@
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { clsx } from 'clsx'
 
 import s from './typography.module.scss'
 
+const components = {
+  body1: 'p',
+  body2: 'p',
+  caption: 'span',
+  error: 'span',
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  large: 'h1',
+  link1: 'a',
+  link2: 'a',
+  overline: 'span',
+  subtitle1: 'h5',
+  subtitle2: 'h6',
+} as const
+
 type TypographyProps<T extends ElementType> = {
   as?: T
-  children: ReactNode
   className?: string
-  variant?:
-    | 'body1'
-    | 'body2'
-    | 'caption'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'large'
-    | 'link1'
-    | 'link2'
-    | 'overline'
-    | 'subtitle1'
-    | 'subtitle2'
-}
+  variant?: keyof typeof components
+} & ComponentPropsWithoutRef<T>
 
 export function Typography<T extends ElementType = 'p'>({
   as,
@@ -29,13 +32,9 @@ export function Typography<T extends ElementType = 'p'>({
   className,
   variant = 'body1',
   ...props
-}: TypographyProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TypographyProps<T>>) {
-  const Component = as || 'p'
+}: TypographyProps<T>) {
+  const Component = as || components[variant] || 'p'
   const styles = clsx(s.root, s[variant], className)
 
-  return (
-    <Component {...props} className={styles}>
-      {children}
-    </Component>
-  )
+  return <Component {...props} className={styles} />
 }

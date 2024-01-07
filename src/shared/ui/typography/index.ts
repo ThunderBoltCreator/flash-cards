@@ -1,1 +1,1 @@
-export { Typography } from 'shared/ui/typography/typography'
+export { Typography } from './typography'

@@ -1,4 +1,5 @@
-import { type Ref, type SVGProps, forwardRef } from 'react'
+import { forwardRef } from 'react'
+import type { Ref, SVGProps } from 'react'
 const CloseEye = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg height={24} ref={ref} width={24} xmlns={'http://www.w3.org/2000/svg'} {...props}>
     <path d={'M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z'} />

@@ -1,6 +1,6 @@
-import { Button } from '@/shared/ui/button/button'
-import { Header } from '@/shared/ui/header/header'
-import { TextFields } from '@/shared/ui/text-field'
+import { Button } from 'shared/ui/button/button'
+import { Header } from 'shared/ui/header/header'
+import { TextFields } from 'shared/ui/text-field'
 
 export function App() {
   return (

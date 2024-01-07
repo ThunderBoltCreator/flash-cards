@@ -4,7 +4,7 @@ module.exports = {
   rules: {
     'import/consistent-type-specifier-style': "warn",
     "import/no-duplicates":'warn',
-    'no-duplicate-imports':'off'
+    'no-duplicate-imports':'off',
   },
  
 }

@@ -16,28 +16,32 @@ export function SearchField(props: SearchFieldProps) {
   const onChangeField = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }
-  const SearchIcon = () => {
-    return (
-      <label className={styles.leftIcon} htmlFor={id}>
-        <Search />
-      </label>
-    )
-  }
+  const SearchIcon = (
+    <>
+      {!value ? (
+        <label className={styles.leftIcon} htmlFor={id}>
+          <Search />
+        </label>
+      ) : (
+        <button className={styles.leftIcon}>
+          <Search />
+        </button>
+      )}
+    </>
+  )
 
-  const ClearInputIcon = () => {
-    return (
-      <button className={styles.rightIcon} onClick={() => setValue('')}>
-        <Cross />
-      </button>
-    )
-  }
+  const ClearInputIcon = (
+    <button className={styles.rightIcon} onClick={() => setValue('')}>
+      <Cross />
+    </button>
+  )
 
   return (
     <TextField
       id={id}
-      leftIcon={<SearchIcon />}
+      leftIcon={SearchIcon}
       onChange={onChangeField}
-      rightIcon={value && <ClearInputIcon />}
+      rightIcon={value && ClearInputIcon}
       type={'search'}
       value={value}
       {...props}
