@@ -10,7 +10,7 @@ export function App() {
       <Button as={'div'}>Knopka</Button>
       <TextFields.Search placeholder={'sdasds'} />
       <TextFields.Password placeholder={'sdasds'} />
-      <TextFields.Base placeholder={'sdasds'} />
+      <TextFields.BaseField placeholder={'sdasds'} />
     </div>
   )
 }

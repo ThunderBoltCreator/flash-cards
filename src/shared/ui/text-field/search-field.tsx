@@ -6,7 +6,7 @@ import type { ChangeEvent } from 'react'
 import Cross from 'shared/assets/icons/cross'
 import Loup from 'shared/assets/icons/loup'
 
-import { Base, styles } from './text-field'
+import { BaseField, styles } from './text-field'
 export type SearchFieldProps = Omit<TextFieldProps, 'type'> & {}
 
 export function SearchField(props: SearchFieldProps) {
@@ -38,7 +38,7 @@ export function SearchField(props: SearchFieldProps) {
   )
 
   return (
-    <Base
+    <BaseField
       id={id}
       leftIcon={SearchIcon}
       onChange={onChangeField}
