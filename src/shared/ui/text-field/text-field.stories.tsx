@@ -7,10 +7,10 @@ const meta = {
   args: {
     disabled: false,
   },
-  component: TextFields.Base,
+  component: TextFields.BaseField,
   tags: ['autodocs'],
   title: 'Components/TextField',
-} satisfies Meta<typeof TextFields.Base>
+} satisfies Meta<typeof TextFields.BaseField>
 
 export default meta
 type Story = StoryObj<typeof meta>
