@@ -11,13 +11,13 @@ import { TextFields } from 'shared/ui/text-field'
 import s from './slider.module.scss'
 export function Slider({ className, max = 10, min = 0, ...props }: SliderProps) {
   const [sliderValues, setSliderValues] = useState<number[]>([min, max])
-  const [inputValues, setInputValues] = useState<string[]>([min.toString(), max.toString()])
+  const [inputValues, setInputValues] = useState<number[]>([min, max])
 
   const onInputChange = (index: number, newInputValue: string) => {
     if (isValidInputValue(/^(0[1-9]*|[1-9]\d*)(\.\d+)?$|^$/, newInputValue)) {
       const updatedInputValues = [...inputValues]
 
-      updatedInputValues[index] = newInputValue
+      updatedInputValues[index] = +newInputValue
       setInputValues(updatedInputValues)
     }
   }
@@ -25,30 +25,30 @@ export function Slider({ className, max = 10, min = 0, ...props }: SliderProps) 
   const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const newValues = inputValues.map(e => {
-        if (+e > max) {
+        if (e > max) {
           return max
         }
-        if (+e < min) {
+        if (e < min) {
           return min
         }
 
         return e
       })
 
-      if (+newValues[0] > +newValues[1]) {
+      if (newValues[0] > newValues[1]) {
         newValues.reverse()
-        setSliderValues(newValues.map(e => +e))
-        setInputValues(newValues.map(e => e.toString()))
+        setSliderValues(newValues)
+        setInputValues(newValues)
       } else {
-        setSliderValues(newValues.map(e => +e))
-        setInputValues(newValues.map(e => e.toString()))
+        setSliderValues(newValues)
+        setInputValues(newValues)
       }
     }
   }
 
   const onSliderChange = (value: number[]) => {
     setSliderValues(value)
-    setInputValues(value.map(e => e.toString()))
+    setInputValues(value)
   }
 
   return (

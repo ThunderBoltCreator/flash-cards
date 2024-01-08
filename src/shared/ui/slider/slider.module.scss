@@ -12,7 +12,16 @@
   & input {
     padding: 5px;
     text-align: center;
-    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+
+    &[type='number'] {
+      appearance: textfield;
+    }
   }
 }
 
@@ -26,9 +35,6 @@
   align-items: center;
 
   width: 100%;
-
-  //width: 200px;
-  //height: 20px;
 }
 
 .track {

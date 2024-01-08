@@ -1,5 +1,6 @@
 import { Button } from 'shared/ui/button/button'
 import { Header } from 'shared/ui/header/header'
+import { Slider } from 'shared/ui/slider'
 import { TextFields } from 'shared/ui/text-field'
 
 export function App() {
@@ -11,6 +12,7 @@ export function App() {
       <TextFields.Search placeholder={'sdasds'} />
       <TextFields.Password placeholder={'sdasds'} />
       <TextFields.BaseField placeholder={'sdasds'} />
+      <Slider max={100} min={10} />
     </div>
   )
 }
