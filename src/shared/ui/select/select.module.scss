@@ -8,10 +8,7 @@
   max-width: 210px;
   height: 36px;
 
-  // overflow-wrap: revert;
-
   background: var(--color-dark-900);
-  border: 1px solid var(--color-dark-300);
   border-radius: 2px;
 
   &:hover {
@@ -50,6 +47,7 @@
     overflow-wrap: break-word;
 
     background: var(--color-dark-900);
+    border: 1px solid var(--color-dark-300);
 
     transition:
       background-color 0.3s,
@@ -77,15 +75,11 @@
 }
 
 .item {
-  padding: 8px 12px;
+  padding: 12px 8px;
   text-align: justify;
   transition:
     background-color 0.3s,
     color 0.3s;
-
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
 
   &:hover {
     color: var(--color-accent-300);
