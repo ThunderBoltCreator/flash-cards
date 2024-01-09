@@ -5,20 +5,30 @@ button {
 
 .RadioGroupRoot {
     display: flex;
+    width: 122px;
     flex-direction: column;
     gap: 10px;
 }
 
 .RadioGroupItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 122px;
+    height: 24px;
+}
+
+.RadioGroupCheckbox {
     background-color: black;
     width: 16px;
     height: 16px;
     border-radius: 100%;
     box-shadow: 0 0 0 2px var(--color-accent-500);
+    margin-left: 4px;
 }
 
 .RadioGroupItem:hover {
-    //background-color: var(--color-dark-500);
+    background-color: var(--color-dark-500);
 }
 
 .RadioGroupItem:focus {
@@ -35,7 +45,7 @@ button {
 }
 
 .RadioGroupIndicator::after{
-    .RadioGroupItem[tabindex='0'] & {
+    .RadioGroupCheckbox[tabindex='0'] & {
         content: '';
         display: block;
         width: 11px;
@@ -47,4 +57,5 @@ button {
 
 .Label {
     color: var(--color-light-100);
+    padding-right: 16px;
 }
