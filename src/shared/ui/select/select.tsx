@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 
-import * as Select from '@radix-ui/react-select'
+import * as SelectRadix from '@radix-ui/react-select'
 import { ChervonDown } from 'shared/assets/icons/chervon-down'
 import { ChervonUp } from 'shared/assets/icons/chervon-up'
 
 import s from './select.module.scss'
 
-type CustomSelectProps = {
+type SelectProps = {
   disabled?: boolean
   items: { label: string; value: string }[]
-}
+} & SelectRadix.SelectProps
 
 const sliceText = (value: string) => {
   if (value.length > 22) {
@@ -19,7 +19,7 @@ const sliceText = (value: string) => {
   return value
 }
 
-export const CustomSelect = (props: CustomSelectProps) => {
+export const Select = (props: SelectProps) => {
   const [open, setOpen] = useState(false)
 
   const [selectValue, setSelectValue] = useState(sliceText(props.items[0].value))
@@ -35,27 +35,26 @@ export const CustomSelect = (props: CustomSelectProps) => {
       className={`${s.root} ${open ? s.selectOpen : ''} ${disabled ? s.selectDisabled : ''}`}
       tabIndex={0}
     >
-      <Select.Root
+      <SelectRadix.Root
         disabled={disabled}
         onOpenChange={setOpen}
         onValueChange={onValueChangeHandler}
         value={selectValue}
       >
         <div className={s.main}>
-          <Select.Trigger>
+          <SelectRadix.Trigger>
             <div className={s.main_content}>
-              <Select.Value>{selectValue}</Select.Value>
-              <Select.Icon className={'SelectIcon'}>
+              <SelectRadix.Value className={s.test}>{selectValue}</SelectRadix.Value>
+              <SelectRadix.Icon className={'SelectIcon'}>
                 {open ? <ChervonUp /> : <ChervonDown />}
-              </Select.Icon>
+              </SelectRadix.Icon>
             </div>
-          </Select.Trigger>
+          </SelectRadix.Trigger>
         </div>
-
-        <Select.Content className={s.selectItems} position={'popper'}>
-          <Select.ScrollUpButton />
-          <Select.Viewport>
-            <Select.Group>
+        <SelectRadix.Portal>
+          <SelectRadix.Content className={s.selectItems} position={'popper'}>
+            <SelectRadix.ScrollUpButton />
+            <SelectRadix.Viewport>
               {items.map(item => {
                 return (
                   <SelectItem className={s.selectItem} key={item.value} value={item.value}>
@@ -63,27 +62,27 @@ export const CustomSelect = (props: CustomSelectProps) => {
                   </SelectItem>
                 )
               })}
-            </Select.Group>
-          </Select.Viewport>
-          <Select.ScrollDownButton />
-        </Select.Content>
-      </Select.Root>
+            </SelectRadix.Viewport>
+            <SelectRadix.ScrollDownButton />
+          </SelectRadix.Content>
+        </SelectRadix.Portal>
+      </SelectRadix.Root>
     </div>
   )
 }
 
-type SelectProps = {
+type SelectItemProps = {
   children: React.ReactNode
   className?: string
   value: string
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
   ({ children, className, ...props }, forwardedRef) => {
     return (
-      <Select.Item {...props} className={s.item} ref={forwardedRef}>
-        <Select.ItemText>{children}</Select.ItemText>
-      </Select.Item>
+      <SelectRadix.Item {...props} className={s.item} ref={forwardedRef}>
+        <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
+      </SelectRadix.Item>
     )
   }
 )
