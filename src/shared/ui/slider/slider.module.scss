@@ -56,6 +56,8 @@
 }
 
 .thumb {
+  cursor: pointer;
+
   display: block;
 
   width: 16px;
@@ -64,16 +66,13 @@
   background-color: var(--color-light-100);
   border: 5px solid var(--color-accent-500);
   border-radius: 10px;
-  box-shadow: 0 0 4px var(--color-accent-100);
+  box-shadow: 0 0 2px var(--color-accent-100);
 
   transition: border 0.1s ease;
 
   &:focus {
+    border-width: 3px;
     outline: none;
     box-shadow: 0 0 8px var(--color-accent-100);
-  }
-
-  &:hover {
-    border-width: 3px;
   }
 }
