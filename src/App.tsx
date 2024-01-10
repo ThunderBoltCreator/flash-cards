@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Button } from 'shared/ui/button/button'
 import { Header } from 'shared/ui/header/header'
 import { Select } from 'shared/ui/select/select'
@@ -6,6 +8,8 @@ import { TextFields } from 'shared/ui/text-field'
 import { CardSwitcher } from 'widgets/card-switcher/ui/card-switcher'
 
 export function App() {
+  const [sliderValues, setSliderValues] = useState<number[]>([10, 50])
+
   return (
     <div>
       <Header rightSlot={<Button>Button</Button>} />
@@ -14,10 +18,14 @@ export function App() {
       <TextFields.Search placeholder={'sdasds'} />
       <TextFields.Password placeholder={'sdasds'} />
       <TextFields.BaseField placeholder={'sdasds'} />
-      <Slider max={100} min={10} />
-
+      <Slider
+        max={50}
+        min={10}
+        onValueChange={setSliderValues}
+        style={{ maxWidth: '300px' }}
+        value={sliderValues}
+      />
       <CardSwitcher />
-
       <div>
         <Select
           items={[
@@ -30,7 +38,6 @@ export function App() {
           ]}
         />
       </div>
-
     </div>
   )
 }
