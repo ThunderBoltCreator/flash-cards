@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import type { ComponentPropsWithRef, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import { clsx } from 'clsx'
 
@@ -10,7 +10,7 @@ export type TextFieldProps = {
   label?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-} & ComponentPropsWithRef<'input'>
+} & ComponentPropsWithoutRef<'input'>
 
 export const styles = {
   input: clsx(s.input),

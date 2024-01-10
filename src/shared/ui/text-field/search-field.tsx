@@ -7,7 +7,7 @@ import Cross from 'shared/assets/icons/cross'
 import Loup from 'shared/assets/icons/loup'
 
 import { BaseField, styles } from './text-field'
-export type SearchFieldProps = Omit<TextFieldProps, 'type'> & {}
+export type SearchFieldProps = Omit<TextFieldProps, 'leftIcon' | 'rightIcon' | 'type'> & {}
 
 export function SearchField(props: SearchFieldProps) {
   const id = useId()
