@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CustomSelect } from 'shared/ui/select/select'
+import { Select } from 'shared/ui/select/select'
 
 const meta = {
   argTypes: {
@@ -10,15 +10,15 @@ const meta = {
       name: 'Disabled',
     },
     items: {
-      defaultValue: [{ label: 'Milk', value: 'milk' }],
+      defaultValue: [{ label: 'select 1', value: 'Select 1' }],
       description: 'Array of items to display in the select',
       name: 'Items',
     },
   },
-  component: CustomSelect,
+  component: Select,
   tags: ['autodocs'],
   title: 'Components/Select',
-} satisfies Meta<typeof CustomSelect>
+} satisfies Meta<typeof Select>
 
 export default meta
 type Story = StoryObj<typeof meta>
