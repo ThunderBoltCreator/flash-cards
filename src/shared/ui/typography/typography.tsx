@@ -28,7 +28,6 @@ type TypographyProps<T extends ElementType> = {
 
 export function Typography<T extends ElementType = 'p'>({
   as,
-  children,
   className,
   variant = 'body1',
   ...props
