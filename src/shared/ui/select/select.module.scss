@@ -1,0 +1,109 @@
+.root {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  max-width: 210px;
+  height: 36px;
+
+  background: var(--color-dark-900);
+  border-radius: 2px;
+
+  &:focus {
+    outline: var(--color-info-700) solid 2px;
+  }
+}
+
+.main {
+  overflow: unset;
+  width: 100%;
+  max-width: 210px;
+
+  button {
+    width: 100%;
+    max-width: 210px;
+  }
+
+  &_content {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 210px;
+    height: 36px;
+    padding: 6px 12px;
+
+    font-size: 16px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+
+    background: var(--color-dark-900);
+    border: 1px solid var(--color-dark-300);
+
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &:hover,
+    &:active {
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-dark-500);
+  }
+}
+
+.selectItems {
+  cursor: pointer;
+
+  transform: translate(0, 0) !important;
+
+  width: 210px;
+
+  word-break: break-all;
+
+  border: 1px solid var(--color-dark-300);
+  border-top: none;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+
+  div {
+    transform: translate(0, 0) !important;
+    outline: none;
+  }
+}
+
+.item {
+  padding: 6px 12px;
+  text-align: justify;
+  background: var(--color-dark-900);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+
+  &:hover {
+    color: var(--color-accent-300);
+    background-color: var(--color-accent-900);
+  }
+}
+
+// if select open
+
+.selectOpen {
+  border-color: var(--color-dark-100);
+  transition: border-color 0.3s;
+}
+
+// disabled select
+
+.selectDisabled {
+  color: var(--color-dark-300);
+  transition: color 0.3s;
+}
