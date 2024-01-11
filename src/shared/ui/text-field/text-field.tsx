@@ -2,15 +2,15 @@ import { useId } from 'react'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import { clsx } from 'clsx'
+import { Typography } from 'shared/ui/typography'
 
 import s from './text-field.module.scss'
 export type TextFieldProps = {
-  error?: ReactNode
-  id?: string
+  error?: string
   label?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-} & ComponentPropsWithoutRef<'input'>
+} & Omit<ComponentPropsWithoutRef<'input'>, 'id'>
 
 export const styles = {
   input: clsx(s.input),
@@ -24,7 +24,6 @@ export const styles = {
 export function BaseField({
   className,
   error,
-  id,
   label,
   leftIcon,
   rightIcon,
@@ -35,15 +34,15 @@ export function BaseField({
   return (
     <div className={clsx(styles.root, className)}>
       {label && (
-        <label className={styles.title} htmlFor={id ?? myId}>
+        <Typography as={'label'} className={styles.title} htmlFor={myId} variant={'body2'}>
           {label}
-        </label>
+        </Typography>
       )}
       <div className={styles.inputWrapper}>
-        <input className={styles.input} id={id ?? myId} {...props} />
+        <input className={styles.input} id={myId} {...props} />
         {leftIcon}
         {rightIcon}
-        {error}
+        {error && <Typography variant={'error'}>{error}</Typography>}
       </div>
     </div>
   )

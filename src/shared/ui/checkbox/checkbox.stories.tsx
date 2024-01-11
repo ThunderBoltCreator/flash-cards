@@ -29,3 +29,11 @@ export const Default: Story = {
   },
   render: args => <Checkbox {...args} />,
 }
+export const Disabled: Story = {
+  args: {
+    checked: false,
+    disabled: true,
+    label: "Hello I'm label",
+  },
+  render: args => <Checkbox {...args} />,
+}

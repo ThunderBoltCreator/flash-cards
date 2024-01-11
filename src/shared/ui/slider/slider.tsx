@@ -1,7 +1,5 @@
-import type { SliderProps } from '@radix-ui/react-slider'
-
 import { useState } from 'react'
-import type { KeyboardEvent } from 'react'
+import type { ComponentPropsWithoutRef, KeyboardEvent } from 'react'
 
 import * as Sl from '@radix-ui/react-slider'
 import { clsx } from 'clsx'
@@ -17,7 +15,7 @@ export function Slider({
   step,
   value,
   ...props
-}: SliderProps) {
+}: ComponentPropsWithoutRef<typeof Sl.Root>) {
   const [inputValues, setInputValues] = useState<string[]>([min.toString(), max.toString()])
 
   const onInputChange = (index: number, newInputValue: string) => {
