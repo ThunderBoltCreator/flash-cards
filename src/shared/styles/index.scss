@@ -1,3 +1,13 @@
 @forward 'colors';
 @forward 'typography';
 @forward 'boilerplate';
+
+.stand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 10px 50px;
+
+  text-align: center;
+}

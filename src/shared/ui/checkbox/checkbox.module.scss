@@ -1,11 +1,13 @@
 .root {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .label {
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
+  column-gap: 10px;
   align-items: center;
 }
 
@@ -49,8 +51,6 @@
   }
 
   &:disabled {
-    cursor: initial;
-
     .frame {
       border-color: var(--color-dark-100);
     }
@@ -62,15 +62,15 @@
     }
   }
 
-  &:focus-visible {
+  &:hover {
     &::after {
       transform: translate(-50%, -50%) scale(1);
       background-color: var(--color-dark-500);
     }
   }
 
-  &:hover {
-    &::before {
+  &:focus {
+    &::after {
       transform: translate(-50%, -50%) scale(1);
       background-color: var(--color-dark-500);
     }
@@ -92,4 +92,9 @@
   left: 0;
 
   fill: var(--color-light-100);
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: initial;
 }

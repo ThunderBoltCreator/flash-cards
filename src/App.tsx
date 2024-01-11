@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from 'shared/ui/button/button'
+import { Checkbox } from 'shared/ui/checkbox/checkbox'
 import { Header } from 'shared/ui/header/header'
 import { Select } from 'shared/ui/select/select'
 import { Slider } from 'shared/ui/slider'
@@ -11,14 +12,14 @@ export function App() {
   const [sliderValues, setSliderValues] = useState<number[]>([10, 50])
 
   return (
-    <div>
+    <div className={'stand'}>
       <Header rightSlot={<Button>Button</Button>} />
-      Hello
       <Button as={'div'}>Knopka</Button>
       <TextFields.Search placeholder={'sdasds'} />
       <TextFields.Password placeholder={'sdasds'} />
       <TextFields.BaseField placeholder={'sdasds'} />
       <Slider
+        className={'center'}
         max={50}
         min={10}
         onValueChange={setSliderValues}
@@ -26,6 +27,7 @@ export function App() {
         value={sliderValues}
       />
       <CardSwitcher />
+      <Checkbox className={'app_center'} label={'Checkbox'} />
       <div>
         <Select
           items={[

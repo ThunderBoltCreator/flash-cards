@@ -32,7 +32,7 @@ export function Typography<T extends ElementType = 'p'>({
   variant = 'body1',
   ...props
 }: TypographyProps<T>) {
-  const Component = as || components[variant] || 'p'
+  const Component: ElementType = as || components[variant] || 'p'
   const styles = clsx(s.root, s[variant], className)
 
   return <Component {...props} className={styles} />
