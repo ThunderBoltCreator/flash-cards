@@ -10,7 +10,7 @@ export type TextFieldProps = {
   label?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-} & Omit<ComponentPropsWithoutRef<'input'>, 'id'>
+} & ComponentPropsWithoutRef<'input'>
 
 export const styles = {
   input: clsx(s.input),
@@ -24,6 +24,7 @@ export const styles = {
 export function BaseField({
   className,
   error,
+  id,
   label,
   leftIcon,
   rightIcon,
@@ -34,12 +35,12 @@ export function BaseField({
   return (
     <div className={clsx(styles.root, className)}>
       {label && (
-        <Typography as={'label'} className={styles.title} htmlFor={myId} variant={'body2'}>
+        <Typography as={'label'} className={styles.title} htmlFor={id || myId} variant={'body2'}>
           {label}
         </Typography>
       )}
       <div className={styles.inputWrapper}>
-        <input className={styles.input} id={myId} {...props} />
+        <input className={styles.input} id={id || myId} {...props} />
         {leftIcon}
         {rightIcon}
         {error && <Typography variant={'error'}>{error}</Typography>}
