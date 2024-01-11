@@ -20,7 +20,7 @@ export const Button = <T extends ElementType = 'button'>({
   variant = 'primary',
   ...rest
 }: ButtonProps<T>) => {
-  const Component: ElementType = as || 'button'
+  const Component = as || 'button'
   const styles = clsx(
     s.button,
     s[variant],
