@@ -60,6 +60,10 @@ label.leftIcon {
     padding-left: 41px;
   }
 
+  &[type='password'] {
+    padding-right: 41px;
+  }
+
   &:hover {
     background-color: var(--color-dark-700);
     border-color: var(--color-dark-100);
@@ -95,5 +99,17 @@ label.leftIcon {
       border-color: transparent;
       outline-color: var(--color-dark-100);
     }
+  }
+}
+
+.error {
+  border-color: var(--color-danger-300);
+
+  &::placeholder {
+    color: var(--color-danger-300);
+  }
+
+  svg {
+    fill: var(--color-danger-300);
   }
 }

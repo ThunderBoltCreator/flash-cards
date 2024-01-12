@@ -8,7 +8,7 @@ import Loup from 'shared/assets/icons/loup'
 
 import { BaseField } from './text-field'
 export type SearchFieldProps = {
-  onButtonClick: () => void
+  onButtonClick?: () => void
 } & Omit<TextFieldProps, 'leftIcon' | 'rightIcon' | 'type'> & {}
 
 export function SearchField({ onButtonClick, ...props }: SearchFieldProps) {
