@@ -7,7 +7,7 @@ import { Typography } from 'shared/ui/typography'
 
 import s from './text-field.module.scss'
 export type TextFieldProps = {
-  error?: string
+  errorMessage?: string
   label?: string
   leftIcon?: ReactElement | null
   rightIcon?: ReactElement | null
@@ -16,20 +16,22 @@ export type TextFieldProps = {
 export function BaseField({
   className,
   disabled,
-  error,
+  errorMessage,
   id,
   label,
   leftIcon,
+  placeholder,
   rightIcon,
   ...props
 }: TextFieldProps) {
   const myId = useId()
 
   const styles = {
-    input: clsx(s.input),
+    errorMessage: clsx(s.errorMessage),
+    input: clsx(s.input, errorMessage && s.error),
     inputWrapper: clsx(s.wrapper),
-    leftIcon: clsx(s.icon, s.leftIcon),
-    rightIcon: clsx(s.icon, s.rightIcon),
+    leftIcon: clsx(s.icon, s.leftIcon, errorMessage && s.error),
+    rightIcon: clsx(s.icon, s.rightIcon, errorMessage && s.error),
     root: clsx(s.root),
     title: clsx(s.title),
   }
@@ -42,11 +44,21 @@ export function BaseField({
         </Typography>
       )}
       <div className={styles.inputWrapper}>
-        <input className={styles.input} disabled={disabled} id={id || myId} {...props} />
+        <input
+          className={styles.input}
+          disabled={disabled}
+          id={id || myId}
+          placeholder={errorMessage ? errorMessage : placeholder}
+          {...props}
+        />
         {leftIcon && <IconWrapper className={styles.leftIcon}>{leftIcon}</IconWrapper>}
         {rightIcon && <IconWrapper className={styles.rightIcon}>{rightIcon}</IconWrapper>}
-        {error && <Typography variant={'error'}>{error}</Typography>}
       </div>
+      {errorMessage && (
+        <Typography className={styles.errorMessage} variant={'error'}>
+          {errorMessage}
+        </Typography>
+      )}
     </div>
   )
 }
