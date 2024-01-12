@@ -17,9 +17,9 @@ export function Slider({
   value,
   ...props
 }: ComponentPropsWithoutRef<typeof Sl.Root>) {
-  const [inputValues, setInputValues] = useState<string[]>([
-    value?.[0].toString() || min.toString(),
-    value?.[1].toString() || max.toString(),
+  const [inputValues, setInputValues] = useState<(number | string)[]>([
+    value?.[0] || min,
+    value?.[1] || max,
   ])
 
   const styles = {
@@ -53,11 +53,12 @@ export function Slider({
     })
 
     onValueChange?.(newValues.sort())
-    setInputValues(newValues.map(String))
+    setInputValues(newValues)
   }
 
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      e.currentTarget.blur()
       applyUpdateInput()
     }
   }
@@ -68,7 +69,7 @@ export function Slider({
 
   const onSliderChange = (value: number[]) => {
     onValueChange?.(value)
-    setInputValues(value.map(e => e.toString()))
+    setInputValues(value)
   }
 
   return (
