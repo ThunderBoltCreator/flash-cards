@@ -6,7 +6,7 @@ import type { ChangeEvent } from 'react'
 import Cross from 'shared/assets/icons/cross'
 import Loup from 'shared/assets/icons/loup'
 
-import { BaseField, styles } from './text-field'
+import { BaseField } from './text-field'
 export type SearchFieldProps = Omit<TextFieldProps, 'leftIcon' | 'rightIcon' | 'type'> & {}
 
 export function SearchField(props: SearchFieldProps) {
@@ -20,11 +20,11 @@ export function SearchField(props: SearchFieldProps) {
   const SearchIcon = (
     <>
       {!value ? (
-        <label className={styles.leftIcon} htmlFor={id}>
+        <label htmlFor={id}>
           <Loup />
         </label>
       ) : (
-        <button className={styles.leftIcon}>
+        <button>
           <Loup />
         </button>
       )}
@@ -32,7 +32,7 @@ export function SearchField(props: SearchFieldProps) {
   )
 
   const ClearInputIcon = (
-    <button className={styles.rightIcon} onClick={() => setValue('')}>
+    <button onClick={() => setValue('')}>
       <Cross />
     </button>
   )

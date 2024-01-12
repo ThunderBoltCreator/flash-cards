@@ -5,7 +5,7 @@ import { useState } from 'react'
 import CloseEye from 'shared/assets/icons/close-eye'
 import Eye from 'shared/assets/icons/eye'
 
-import { BaseField, styles } from './text-field'
+import { BaseField } from './text-field'
 
 type PasswordFieldProps = Omit<TextFieldProps, 'rightIcon' | 'type'> & {
   showPasswordInit?: boolean
@@ -28,7 +28,7 @@ export function PasswordField({ disabled, showPasswordInit, ...props }: Password
       disabled={disabled}
       {...props}
       rightIcon={
-        <button className={styles.rightIcon} disabled={disabled} onClick={toggleShowPas}>
+        <button disabled={disabled} onClick={toggleShowPas}>
           {showPas ? <Eye /> : <CloseEye />}
         </button>
       }

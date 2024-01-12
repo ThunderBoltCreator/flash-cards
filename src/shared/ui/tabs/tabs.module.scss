@@ -73,3 +73,8 @@
 .content {
   color: #fff;
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: initial;
+}
