@@ -1,12 +1,12 @@
 import { cloneElement } from 'react'
-import type { ReactElement, ReactNode } from 'react'
+import type { ReactElement } from 'react'
 
 type IconWrapperProps = {
-  children: ReactNode
+  children: ReactElement
   className?: string
 }
 export const IconWrapper = ({ children, ...props }: IconWrapperProps) => {
-  const component = cloneElement(children as ReactElement, { ...props })
+  const component = cloneElement(children, { ...props })
 
   return <>{component}</>
 }
