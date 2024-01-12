@@ -1,7 +1,8 @@
-import { cloneElement, useId } from 'react'
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
+import { useId } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import { clsx } from 'clsx'
+import { IconWrapper } from 'shared/ui/icon-wrapper'
 import { Typography } from 'shared/ui/typography'
 
 import s from './text-field.module.scss'
@@ -11,16 +12,6 @@ export type TextFieldProps = {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
 } & ComponentPropsWithoutRef<'input'>
-
-type IconWrapperProps = {
-  children: ReactNode
-  className?: string
-}
-export const IconWrapper = ({ children, ...props }: IconWrapperProps) => {
-  const component = cloneElement(children as ReactElement, { ...props })
-
-  return <>{component}</>
-}
 
 export function BaseField({
   className,
