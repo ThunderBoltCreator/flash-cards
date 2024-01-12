@@ -9,6 +9,7 @@ import { TextFields } from 'shared/ui/text-field'
 import s from './slider.module.scss'
 export function Slider({
   className,
+  disabled,
   max = 10,
   min = 0,
   onValueChange,
@@ -16,7 +17,19 @@ export function Slider({
   value,
   ...props
 }: ComponentPropsWithoutRef<typeof Sl.Root>) {
-  const [inputValues, setInputValues] = useState<string[]>([min.toString(), max.toString()])
+  const [inputValues, setInputValues] = useState<string[]>([
+    value?.[0].toString() || min.toString(),
+    value?.[1].toString() || max.toString(),
+  ])
+
+  const styles = {
+    container: clsx(s.container, className),
+    range: clsx(s.range),
+    score: clsx(s.score, disabled && s.disabled),
+    slider: clsx(s.slider),
+    thumb: clsx(s.thumb, disabled && s.disabled),
+    track: clsx(s.track),
+  }
 
   const onInputChange = (index: number, newInputValue: string) => {
     if (isValidInputValue(/^-?(0[1-9]*|[1-9]\d*)(\.\d+)?$|^$/, newInputValue)) {
@@ -60,9 +73,10 @@ export function Slider({
 
   return (
     <>
-      <div className={clsx(s.root, className)}>
+      <div className={styles.container}>
         <TextFields.BaseField
-          className={s.score}
+          className={styles.score}
+          disabled={disabled}
           onBlur={onBlur}
           onChange={e => onInputChange(0, e.currentTarget.value)}
           onKeyDown={onPressEnter}
@@ -70,7 +84,8 @@ export function Slider({
           value={inputValues[0]}
         />
         <Sl.Root
-          className={s.root_slider}
+          className={styles.slider}
+          disabled={disabled}
           max={max}
           min={min}
           onValueChange={onSliderChange}
@@ -78,14 +93,15 @@ export function Slider({
           value={value}
           {...props}
         >
-          <Sl.Track className={s.track}>
-            <Sl.Range className={s.range} />
+          <Sl.Track className={styles.track}>
+            <Sl.Range className={styles.range} />
           </Sl.Track>
-          <Sl.Thumb className={s.thumb} />
-          <Sl.Thumb className={s.thumb} />
+          <Sl.Thumb className={styles.thumb} />
+          <Sl.Thumb className={styles.thumb} />
         </Sl.Root>
         <TextFields.BaseField
-          className={s.score}
+          className={styles.score}
+          disabled={disabled}
           onBlur={onBlur}
           onChange={e => onInputChange(1, e.currentTarget.value)}
           onKeyDown={onPressEnter}

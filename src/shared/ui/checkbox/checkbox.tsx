@@ -27,8 +27,7 @@ export function Checkbox({
     frame: s.frame,
     indicator: s.indicator,
     label: clsx(s.label, disabled && s.disabled),
-    root: clsx(s.root, className && s.disabled),
-    wrapper: clsx(s.buttonWrapper, disabled && s.disabled),
+    root: clsx(s.root),
   }
   const [check, setCheck] = useState(checked)
 
