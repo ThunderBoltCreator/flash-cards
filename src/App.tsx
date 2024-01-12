@@ -2,6 +2,7 @@ import { Button } from 'shared/ui/button/button'
 import { Header } from 'shared/ui/header/header'
 import { Select } from 'shared/ui/select/select'
 import { Slider } from 'shared/ui/slider'
+import { Table } from 'shared/ui/table/table'
 import { TextFields } from 'shared/ui/text-field'
 
 export function App() {
@@ -25,6 +26,7 @@ export function App() {
             { label: 'select 3', value: 'Select 3' },
           ]}
         />
+        <Table />
       </div>
     </div>
   )
