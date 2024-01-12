@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 import { clsx } from 'clsx'
 import { IconWrapper } from 'shared/ui/icon-wrapper'
@@ -9,8 +9,8 @@ import s from './text-field.module.scss'
 export type TextFieldProps = {
   error?: string
   label?: string
-  leftIcon?: ReactNode
-  rightIcon?: ReactNode
+  leftIcon?: ReactElement | null
+  rightIcon?: ReactElement | null
 } & ComponentPropsWithoutRef<'input'>
 
 export function BaseField({
