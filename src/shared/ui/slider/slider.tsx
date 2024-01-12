@@ -17,10 +17,8 @@ export function Slider({
   value,
   ...props
 }: ComponentPropsWithoutRef<typeof Sl.Root>) {
-  const [inputValues, setInputValues] = useState<(number | string)[]>([
-    value?.[0] || min,
-    value?.[1] || max,
-  ])
+  const [currentMin, currentMax] = value || [min, max]
+  const [inputValues, setInputValues] = useState<(number | string)[]>([currentMin, currentMax])
 
   const styles = {
     container: clsx(s.container, className),
@@ -32,7 +30,7 @@ export function Slider({
   }
 
   const onInputChange = (index: number, newInputValue: string) => {
-    if (isValidInputValue(/^-?(0[1-9]*|[1-9]\d*)(\.\d+)?$|^$/, newInputValue)) {
+    if (isValidInputValue(/^-?(0(\.\d{0,3})?|[1-9]\d*(\.\d{0,3})?)?$/, newInputValue)) {
       const updatedInputValues = [...inputValues]
 
       updatedInputValues[index] = newInputValue
@@ -41,18 +39,31 @@ export function Slider({
   }
 
   const applyUpdateInput = () => {
-    const newValues = inputValues.map(e => {
-      if (+e > max) {
-        return max
-      }
-      if (+e < min) {
-        return min
+    const newValues = inputValues.map((e, index) => {
+      const current = +e
+      const firstValue = +inputValues[0]
+      const secondValue = +inputValues[1]
+
+      if (index === 0 && current > secondValue) {
+        if (+e < min) {
+          return min
+        }
+
+        return currentMax
       }
 
-      return +e
+      if (index === 1 && +e < firstValue) {
+        if (+e > max) {
+          return max
+        }
+
+        return currentMin
+      }
+
+      return Math.round(+e)
     })
 
-    onValueChange?.(newValues.sort())
+    onValueChange?.(newValues)
     setInputValues(newValues)
   }
 
