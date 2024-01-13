@@ -1,0 +1,136 @@
+.menuItem,
+.DropdownMenuCheckboxItem,
+.DropdownMenuRadioItem,
+.DropdownMenuSubTrigger {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 25px;
+  padding: 0 5px;
+
+  line-height: 1;
+
+  outline: none;
+}
+
+.menuItem[data-highlighted],
+.DropdownMenuCheckboxItem[data-highlighted],
+.DropdownMenuRadioItem[data-highlighted],
+.DropdownMenuSubTrigger[data-highlighted] {
+  // color: #46307f;
+  // background-color: #00fff7;
+}
+
+.menuItem {
+  cursor: pointer;
+
+  svg {
+    margin-right: 6px;
+  }
+
+  p {
+    font-size: 12px;
+    color: #fff;
+  }
+}
+
+.menuItem:last-child {
+  margin-top: 12px;
+}
+
+.items {
+  .menuItem:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+
+.DropdownMenuContent,
+.DropdownMenuSubContent {
+  min-width: min-content;
+  padding: 12px;
+
+  background-color: var(--color-dark-700);
+  border-radius: 4px;
+
+  animation-duration: 400ms;
+}
+
+.DropdownMenuArrow {
+  fill: var(--color-dark-700);
+}
+
+.DropdownMenuSeparator {
+  height: 1px;
+  margin: 5px;
+  background-color: var(--color-dark-100);
+}
+
+@keyframes slide-up-and-fade {
+  from {
+    transform: translateY(2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right-and-fade {
+  from {
+    transform: translateX(-2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down-and-fade {
+  from {
+    transform: translateY(-2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-left-and-fade {
+  from {
+    transform: translateX(2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.DropdownMenuContent[data-side='top'],
+.DropdownMenuSubContent[data-side='top'] {
+  animation-name: slide-down-and-fade;
+}
+
+.DropdownMenuContent[data-side='right'],
+.DropdownMenuSubContent[data-side='right'] {
+  animation-name: slide-left-and-fade;
+}
+
+.DropdownMenuContent[data-side='bottom'],
+.DropdownMenuSubContent[data-side='bottom'] {
+  animation-name: slide-up-and-fade;
+}
+
+.DropdownMenuContent[data-side='left'],
+.DropdownMenuSubContent[data-side='left'] {
+  animation-name: slide-right-and-fade;
+}
