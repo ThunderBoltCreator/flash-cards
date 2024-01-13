@@ -20,6 +20,16 @@
     background-color 0.3s ease,
     color 0.3s ease;
 
+  .icon {
+    fill: var(--color-light-100);
+  }
+
+  &:disabled {
+    .icon {
+      fill: var(--color-light-900);
+    }
+  }
+
   &:focus-visible {
     outline: 2px solid var(--color-info-700);
   }
@@ -115,4 +125,12 @@
 
 .disabled {
   cursor: initial;
+}
+
+.left {
+  order: 0;
+}
+
+.right {
+  order: 1;
 }

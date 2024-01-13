@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import Loup from 'shared/assets/icons/loup'
 import { Button } from 'shared/ui/button/button'
 
 const meta = {
@@ -66,6 +67,14 @@ export const AsLink: Story = {
   args: {
     as: 'a',
     children: 'Link that looks like a button',
+    variant: 'primary',
+  },
+}
+export const Test: Story = {
+  args: {
+    children: 'Link that looks like a button',
+    icon: <Loup />,
+    iconPosition: 'right',
     variant: 'primary',
   },
 }
