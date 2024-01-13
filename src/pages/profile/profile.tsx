@@ -1,5 +1,6 @@
 import type { UserData } from 'pages/profile/types'
 
+import LogoutIcon from 'shared/assets/icons/log-out'
 import { Avatar } from 'shared/ui/avatar'
 import { Button } from 'shared/ui/button'
 import { Card } from 'shared/ui/card/card'
@@ -39,7 +40,9 @@ export function Profile({}: ProfileProps) {
           {data.email}
         </Typography>
       </div>
-      <Button>Logout</Button>
+      <Button icon={<LogoutIcon />} variant={'secondary'}>
+        <Typography variant={'subtitle2'}>Logout</Typography>
+      </Button>
     </Card>
   )
 }
