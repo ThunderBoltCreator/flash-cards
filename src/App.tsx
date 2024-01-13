@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { Avatar } from 'shared/ui/avatar'
 import { Button } from 'shared/ui/button/button'
 import { Checkbox } from 'shared/ui/checkbox/checkbox'
 import { DropDown } from 'shared/ui/dropDownMenu'
@@ -15,7 +16,16 @@ export function App() {
 
   return (
     <div className={'stand'}>
-      <Header rightSlot={<Button>Button</Button>} />
+      <Header
+        rightSlot={
+          <Avatar
+            alt={'Jerry'}
+            src={
+              'https://cdn.dribbble.com/users/536736/screenshots/2443094/media/ec35f1e2d8943cd0e0d9b6674a626894.png'
+            }
+          />
+        }
+      />
       <Button as={'div'}>Knopka</Button>
       <TextFields.Search placeholder={'sdasds'} />
       <TextFields.Password placeholder={'sdasds'} />

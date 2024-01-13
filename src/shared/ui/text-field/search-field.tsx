@@ -6,10 +6,12 @@ import type { ChangeEvent } from 'react'
 import Cross from 'shared/assets/icons/cross'
 import Loup from 'shared/assets/icons/loup'
 
-import { BaseField, styles } from './text-field'
-export type SearchFieldProps = Omit<TextFieldProps, 'leftIcon' | 'rightIcon' | 'type'> & {}
+import { BaseField } from './text-field'
+export type SearchFieldProps = {
+  onButtonClick?: () => void
+} & Omit<TextFieldProps, 'leftIcon' | 'rightIcon' | 'type'> & {}
 
-export function SearchField(props: SearchFieldProps) {
+export function SearchField({ onButtonClick, ...props }: SearchFieldProps) {
   const id = useId()
   const [value, setValue] = useState('')
 
@@ -17,22 +19,20 @@ export function SearchField(props: SearchFieldProps) {
     setValue(e.currentTarget.value)
   }
 
-  const SearchIcon = (
-    <>
-      {!value ? (
-        <label className={styles.leftIcon} htmlFor={id}>
-          <Loup />
-        </label>
-      ) : (
-        <button className={styles.leftIcon}>
-          <Loup />
-        </button>
-      )}
-    </>
+  const SearchIconLabel = (
+    <label htmlFor={id}>
+      <Loup />
+    </label>
+  )
+
+  const SearchIconButton = (
+    <button onClick={onButtonClick}>
+      <Loup />
+    </button>
   )
 
   const ClearInputIcon = (
-    <button className={styles.rightIcon} onClick={() => setValue('')}>
+    <button onClick={() => setValue('')}>
       <Cross />
     </button>
   )
@@ -40,9 +40,9 @@ export function SearchField(props: SearchFieldProps) {
   return (
     <BaseField
       id={id}
-      leftIcon={SearchIcon}
+      leftIcon={value ? SearchIconButton : SearchIconLabel}
       onChange={onChangeField}
-      rightIcon={value && ClearInputIcon}
+      rightIcon={value ? ClearInputIcon : null}
       type={'search'}
       value={value}
       {...props}

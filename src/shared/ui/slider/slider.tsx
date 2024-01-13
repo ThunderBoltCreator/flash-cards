@@ -9,6 +9,7 @@ import { TextFields } from 'shared/ui/text-field'
 import s from './slider.module.scss'
 export function Slider({
   className,
+  disabled,
   max = 10,
   min = 0,
   onValueChange,
@@ -16,35 +17,59 @@ export function Slider({
   value,
   ...props
 }: ComponentPropsWithoutRef<typeof Sl.Root>) {
-  const [inputValues, setInputValues] = useState<string[]>([min.toString(), max.toString()])
+  const [currentMin, currentMax] = value || [min, max]
+  const [inputValues, setInputValues] = useState<(number | string)[]>([currentMin, currentMax])
+
+  const styles = {
+    container: clsx(s.container, className),
+    range: clsx(s.range),
+    score: clsx(s.score, disabled && s.disabled),
+    slider: clsx(s.slider),
+    thumb: clsx(s.thumb, disabled && s.disabled),
+    track: clsx(s.track),
+  }
 
   const onInputChange = (index: number, newInputValue: string) => {
-    if (isValidInputValue(/^-?(0[1-9]*|[1-9]\d*)(\.\d+)?$|^$/, newInputValue)) {
+    if (isValidInputValue(/^-?(0(\.\d{0,3})?|[1-9]\d*(\.\d{0,3})?)?$/, newInputValue)) {
       const updatedInputValues = [...inputValues]
 
-      updatedInputValues[index] = newInputValue
+      updatedInputValues[index] = parseInt(newInputValue)
       setInputValues(updatedInputValues)
     }
   }
 
   const applyUpdateInput = () => {
-    const newValues = inputValues.map(e => {
-      if (+e > max) {
-        return max
-      }
-      if (+e < min) {
-        return min
+    const newValues = inputValues.map((e, index) => {
+      const current = +e
+      const firstValue = +inputValues[0]
+      const secondValue = +inputValues[1]
+
+      if (index === 0 && current > secondValue) {
+        if (+e < min) {
+          return min
+        }
+
+        return currentMax
       }
 
-      return +e
+      if (index === 1 && +e < firstValue) {
+        if (+e > max) {
+          return max
+        }
+
+        return currentMin
+      }
+
+      return Math.round(+e)
     })
 
-    onValueChange?.(newValues.sort())
-    setInputValues(newValues.map(String))
+    onValueChange?.(newValues)
+    setInputValues(newValues)
   }
 
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      e.currentTarget.blur()
       applyUpdateInput()
     }
   }
@@ -55,14 +80,15 @@ export function Slider({
 
   const onSliderChange = (value: number[]) => {
     onValueChange?.(value)
-    setInputValues(value.map(e => e.toString()))
+    setInputValues(value)
   }
 
   return (
     <>
-      <div className={clsx(s.root, className)}>
+      <div className={styles.container}>
         <TextFields.BaseField
-          className={s.score}
+          className={styles.score}
+          disabled={disabled}
           onBlur={onBlur}
           onChange={e => onInputChange(0, e.currentTarget.value)}
           onKeyDown={onPressEnter}
@@ -70,7 +96,8 @@ export function Slider({
           value={inputValues[0]}
         />
         <Sl.Root
-          className={s.root_slider}
+          className={styles.slider}
+          disabled={disabled}
           max={max}
           min={min}
           onValueChange={onSliderChange}
@@ -78,14 +105,15 @@ export function Slider({
           value={value}
           {...props}
         >
-          <Sl.Track className={s.track}>
-            <Sl.Range className={s.range} />
+          <Sl.Track className={styles.track}>
+            <Sl.Range className={styles.range} />
           </Sl.Track>
-          <Sl.Thumb className={s.thumb} />
-          <Sl.Thumb className={s.thumb} />
+          <Sl.Thumb className={styles.thumb} />
+          <Sl.Thumb className={styles.thumb} />
         </Sl.Root>
         <TextFields.BaseField
-          className={s.score}
+          className={styles.score}
+          disabled={disabled}
           onBlur={onBlur}
           onChange={e => onInputChange(1, e.currentTarget.value)}
           onKeyDown={onPressEnter}
