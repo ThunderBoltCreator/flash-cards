@@ -33,7 +33,7 @@ export function Slider({
     if (isValidInputValue(/^-?(0(\.\d{0,3})?|[1-9]\d*(\.\d{0,3})?)?$/, newInputValue)) {
       const updatedInputValues = [...inputValues]
 
-      updatedInputValues[index] = newInputValue
+      updatedInputValues[index] = parseInt(newInputValue)
       setInputValues(updatedInputValues)
     }
   }
