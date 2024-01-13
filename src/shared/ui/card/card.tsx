@@ -6,16 +6,16 @@ import s from './card.module.scss'
 type CardProps<T extends ElementType> = {
   as?: T
   children: ReactNode
-  classNames?: string
+  className?: string
 }
 
 export function Card<T extends ElementType = 'div'>({
   as,
-  classNames,
+  className,
   ...props
 }: CardProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
   const Component = as || 'div'
-  const styles = clsx(s.root, classNames)
+  const styles = clsx(s.root, className)
 
   return <Component {...props} className={styles} />
 }
