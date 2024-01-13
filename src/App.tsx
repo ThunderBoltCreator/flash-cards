@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Button } from 'shared/ui/button/button'
 import { Checkbox } from 'shared/ui/checkbox/checkbox'
+import { DropDown } from 'shared/ui/dropDownMenu'
 import { Header } from 'shared/ui/header/header'
 import { Select } from 'shared/ui/select/select'
 import { Slider } from 'shared/ui/slider'
@@ -42,6 +43,9 @@ export function App() {
         />
         <Table />
       </div>
+
+      <DropDown.ProfileMenu />
+      <DropDown.ManagementMenu />
     </div>
   )
 }

@@ -1,0 +1,24 @@
+.managementIcon {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.email {
+  color: var(--color-dark-100);
+}
+
+.info {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.editItem {
+  margin-top: 12px;
+}
