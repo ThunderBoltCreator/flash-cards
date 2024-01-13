@@ -1,0 +1,29 @@
+.iconUser {
+  cursor: pointer;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: var(--color-dark-100);
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.email {
+  color: var(--color-dark-100);
+}
+
+.info {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.profile {
+  margin-top: 12px;
+}
