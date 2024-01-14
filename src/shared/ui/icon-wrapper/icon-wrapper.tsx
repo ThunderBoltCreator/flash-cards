@@ -1,12 +1,10 @@
-import { cloneElement } from 'react'
 import type { ReactElement } from 'react'
+import { cloneElement, memo } from 'react'
 
 type IconWrapperProps = {
   children: ReactElement
   className?: string
 }
-export const IconWrapper = ({ children, ...props }: IconWrapperProps) => {
-  const component = cloneElement(children, { ...props })
-
-  return <>{component}</>
-}
+export const IconWrapper = memo(({ children, className }: IconWrapperProps) =>
+  cloneElement(children, { className })
+)

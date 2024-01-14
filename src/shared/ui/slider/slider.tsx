@@ -17,8 +17,7 @@ export function Slider({
   value,
   ...props
 }: ComponentPropsWithoutRef<typeof Sl.Root>) {
-  const [currentMin, currentMax] = value || [min, max]
-  const [inputValues, setInputValues] = useState<(number | string)[]>([currentMin, currentMax])
+  const [inputValues, setInputValues] = useState<(number | string)[]>(value ?? [min, max])
 
   const styles = {
     container: clsx(s.container, className),
@@ -33,38 +32,32 @@ export function Slider({
     if (isValidInputValue(/^-?(0(\.\d{0,3})?|[1-9]\d*(\.\d{0,3})?)?$/, newInputValue)) {
       const updatedInputValues = [...inputValues]
 
-      updatedInputValues[index] = parseInt(newInputValue)
+      updatedInputValues[index] = newInputValue
       setInputValues(updatedInputValues)
     }
   }
 
   const applyUpdateInput = () => {
-    const newValues = inputValues.map((e, index) => {
-      const current = +e
-      const firstValue = +inputValues[0]
-      const secondValue = +inputValues[1]
+    let minInputValue = +inputValues[0]
+    let maxInputValue = +inputValues[1]
 
-      if (index === 0 && current > secondValue) {
-        if (+e < min) {
-          return min
-        }
+    if (+minInputValue < min) {
+      minInputValue = min
+    }
+    if (+minInputValue > max) {
+      minInputValue = max
+    }
+    if (+maxInputValue > max) {
+      maxInputValue = max
+    }
+    if (+maxInputValue < min) {
+      maxInputValue = min
+    }
 
-        return currentMax
-      }
+    const newValuesSort = [minInputValue, maxInputValue].sort((a, b) => a - b)
 
-      if (index === 1 && +e < firstValue) {
-        if (+e > max) {
-          return max
-        }
-
-        return currentMin
-      }
-
-      return Math.round(+e)
-    })
-
-    onValueChange?.(newValues)
-    setInputValues(newValues)
+    setInputValues(newValuesSort)
+    onValueChange?.(newValuesSort)
   }
 
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
